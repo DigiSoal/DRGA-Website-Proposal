@@ -12,7 +12,6 @@
     <meta property="og:type" content="website">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,15 +23,6 @@
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Inter', sans-serif;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 400px;
-            max-height: 40vh;
         }
         .timeline-item::before {
             content: '';
@@ -82,39 +72,9 @@
             #vision {
                 page-break-before: auto;
             }
-        }
-        .tooltip-container {
-            position: relative;
-        }
-        .tooltip {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 10px;
-            background-color: #333;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 6px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            z-index: 50;
-        }
-        .tooltip::after {
-            content: '';
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: transparent transparent #333 transparent;
-        }
-        .tooltip-container:hover .tooltip {
-            opacity: 1;
-            visibility: visible;
+            #investment-breakdown {
+                page-break-before: auto;
+            }
         }
     </style>
 </head>
@@ -130,7 +90,7 @@
                     <a href="#vision" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">The Vision</a>
                     <a href="#visuals" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Visuals</a>
                     <a href="#features" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Features</a>
-                    <a href="#investment" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Investment</a>
+                    <a href="#investment-breakdown" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Investment</a>
                     <a href="#process" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Process</a>
                     <a href="#feedback-and-signoff" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Feedback & Signoff</a>
                     <a href="https://wa.me/27661607344" target="_blank" rel="noopener noreferrer" class="bg-[#00C2B8] text-white py-2 px-4 rounded-full hover:bg-opacity-90 transition-colors font-bold flex items-center space-x-2">
@@ -154,7 +114,7 @@
             <a href="#vision" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">The Vision</a>
             <a href="#visuals" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Visuals</a>
             <a href="#features" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Features</a>
-            <a href="#investment" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Investment</a>
+            <a href="#investment-breakdown" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Investment</a>
             <a href="#process" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Process</a>
             <a href="#feedback-and-signoff" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Feedback & Signoff</a>
             <a href="https://wa.me/27661607344" target="_blank" rel="noopener noreferrer" class="block py-4 px-6 text-sm text-white bg-[#00C2B8] text-center">WhatsApp Us</a>
@@ -324,61 +284,62 @@
             </div>
         </section>
 
-        <section id="investment" class="py-20 bg-white">
+        <!-- New static investment breakdown section -->
+        <section id="investment-breakdown" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">A Transparent Financial Investment</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">This investment covers the complete design, development, and launch of both the DRGA and Foundation websites, as well as the creation of marketing materials.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">Our Investment & Pricing Breakdown</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">A transparent breakdown of the investment required to create your comprehensive digital ecosystem. This includes a one-time project fee and a flexible monthly subscription for ongoing maintenance and support.</p>
                 </div>
-                <div class="grid md:grid-cols-5 gap-8 items-center">
-                    <div class="md:col-span-2">
-                        <h3 class="text-2xl font-bold text-center text-[#003366] mb-4">Total Project Cost</h3>
-                        <div class="chart-container">
-                            <canvas id="costChart"></canvas>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="p-8 bg-[#003366] rounded-lg shadow-xl text-white">
+                        <h3 class="text-2xl font-bold mb-6">One-Time Project Fee</h3>
+                        <div class="space-y-4">
+                             <div class="price-list space-y-2">
+                                <div class="flex justify-between items-center text-gray-300">
+                                    <span>Website Design & Development (Both Sites)</span>
+                                    <span>R 18,000</span>
+                                </div>
+                                <div class="flex justify-between items-center text-gray-300">
+                                    <span>Creative & Corporate Identity (CID) Pack</span>
+                                    <span>R 2,500</span>
+                                </div>
+                                <div class="flex justify-between items-center text-gray-300">
+                                    <span>Analytics & SEO Integration</span>
+                                    <span>R 500</span>
+                                </div>
+                                <div class="flex justify-between items-center text-gray-300">
+                                    <span>Project Management & Strategy</span>
+                                    <span>R 1,000</span>
+                                </div>
+                             </div>
+                            <div class="border-t border-gray-600 pt-4 mt-4 flex justify-between items-center">
+                                <h4 class="text-xl font-bold">Total One-Time Fee</h4>
+                                <span class="text-4xl font-extrabold text-[#00C2B8]">R 22,000</span>
+                            </div>
                         </div>
-                         <p class="text-center text-5xl font-black text-[#003366] mt-4">ZAR 65,000</p>
-                         <p class="text-center text-gray-500">Total One-Time Investment</p>
                     </div>
-                    <div class="md:col-span-3">
-                        <h3 class="text-2xl font-bold text-[#003366] mb-6">Cost Breakdown (One-Time)</h3>
-                        <div class="space-y-4">
-                            <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
-                                <div>
-                                    <h4 class="font-bold text-lg text-[#003366]">DRGA Website (drga.co.za)</h4>
-                                    <p class="text-sm text-gray-600">Full design, development, and launch.</p>
+
+                    <div class="p-8 bg-gray-100 rounded-lg shadow-inner">
+                         <h3 class="text-2xl font-bold text-[#003366] mb-6">Monthly Subscription (Maintenance & Support)</h3>
+                         <div class="space-y-4">
+                            <div class="price-list space-y-2">
+                                <div class="flex justify-between items-center text-gray-700">
+                                    <span>Professional Hosting & Uptime Monitoring</span>
+                                    <span>R 800/month</span>
                                 </div>
-                                <div class="font-bold text-lg text-[#003366]">R 35,000</div>
+                                <div class="flex justify-between items-center text-gray-700">
+                                    <span>Managed Security & Monthly Backups</span>
+                                    <span>R 500/month</span>
+                                </div>
+                                <div class="flex justify-between items-center text-gray-700">
+                                    <span>Content Updates & Minor Changes (1 hour/month)</span>
+                                    <span>R 500/month</span>
+                                </div>
                             </div>
-                            <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
-                                <div>
-                                    <h4 class="font-bold text-lg text-[#003366]">Foundation Website (drgwenramokgopafoundation.org.za)</h4>
-                                    <p class="text-sm text-gray-600">Full design, development, and launch.</p>
-                                </div>
-                                <div class="font-bold text-lg text-[#003366]">R 25,000</div>
-                            </div>
-                            <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
-                                <div>
-                                    <h4 class="font-bold text-lg text-[#003366]">Marketing Materials</h4>
-                                    <p class="text-sm text-gray-600">Design for letterheads, cards, etc.</p>
-                                </div>
-                                <div class="font-bold text-lg text-[#003366]">R 5,000</div>
-                            </div>
-                        </div>
-                         <h3 class="text-2xl font-bold text-[#003366] mb-6 mt-12">Recurring Operational Costs</h3>
-                        <div class="space-y-4">
-                            <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
-                                <div>
-                                    <h4 class="font-bold text-lg text-[#003366]">Domain & Hosting</h4>
-                                    <p class="text-sm text-gray-600">Annual fees for both sites.</p>
-                                </div>
-                                <div class="font-bold text-lg text-[#003366]">~R 3,000 / year</div>
-                            </div>
-                            <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
-                                <div>
-                                    <h4 class="font-bold text-lg text-[#003366]">Maintenance & Support</h4>
-                                    <p class="text-sm text-gray-600">Security and updates for both sites.</p>
-                                </div>
-                                <div class="font-bold text-lg text-[#003366]">R 900 / month</div>
+                            <div class="border-t border-gray-300 pt-4 mt-4 flex justify-between items-center">
+                                <h4 class="text-xl font-bold text-[#003366]">Total Monthly Subscription</h4>
+                                <span class="text-4xl font-extrabold text-[#003366]">R 1,800/month</span>
                             </div>
                         </div>
                     </div>
@@ -530,7 +491,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async function () {
-
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const proposalContent = document.getElementById('proposal-content');
@@ -572,13 +532,20 @@
                 const proposalApproval = document.getElementById('proposalApproval').checked ? 'Approved' : 'Not Approved';
                 const projectStartDate = document.getElementById('projectStartDate').value;
                 const paymentTermsAgree = document.getElementById('paymentTermsAgree').checked ? 'Agreed' : 'Not Agreed';
+                
+                // Hardcoded pricing details from the new structure
+                const oneTimeFee = 'R 22,000';
+                const monthlySubscription = 'R 1,800/month';
 
                 const subject = encodeURIComponent('Proposal Feedback & Sign-off');
                 const emailBody = `Proposal Feedback from DRGA\n\n` +
                                   `Name: ${clientName}\n` +
                                   `Email: ${clientEmail}\n` +
                                   `Project Start Date: ${projectStartDate}\n` +
-                                  `Feedback & Comments: ${clientFeedback}\n` +
+                                  `\nInvestment Breakdown:\n` +
+                                  `- Total One-Time Fee: ${oneTimeFee}\n` +
+                                  `- Total Monthly Subscription: ${monthlySubscription}\n` +
+                                  `\nFeedback & Comments: ${clientFeedback}\n` +
                                   `\n---\n` +
                                   `Proposal Approval: ${proposalApproval}\n` +
                                   `Payment Terms Agreement: ${paymentTermsAgree}`;
@@ -588,6 +555,9 @@
                 const whatsappMessage = `Hello, I am providing feedback on the DRGA Web Design Proposal.\n\n` +
                                         `Name: ${clientName}\n` +
                                         `Project Start Date: ${projectStartDate}\n` +
+                                        `Investment Breakdown:\n` +
+                                        `- Total One-Time Fee: ${oneTimeFee}\n` +
+                                        `- Total Monthly Subscription: ${monthlySubscription}\n` +
                                         `Feedback: ${clientFeedback}\n` +
                                         `Approval: ${proposalApproval}\n` +
                                         `Payment Terms: ${paymentTermsAgree}`;
@@ -625,71 +595,6 @@
                 html2pdf().set(options).from(element).save();
             }
 
-            const ctx = document.getElementById('costChart').getContext('2d');
-            const costChart = new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['DRGA Website', 'Foundation Website', 'Marketing Materials'],
-                    datasets: [{
-                        label: 'Cost Breakdown',
-                        data: [35000, 25000, 5000],
-                        backgroundColor: [
-                            '#003366',
-                            '#336699',
-                            '#99BADD',
-                        ],
-                        borderColor: '#FFFFFF',
-                        borderWidth: 4,
-                        hoverOffset: 10
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '60%',
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            labels: {
-                                color: '#4A5568',
-                                font: {
-                                    family: "'Inter', sans-serif",
-                                    size: 12
-                                },
-                                padding: 15,
-                                boxWidth: 12,
-                            }
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed !== null) {
-                                        label += new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' }).format(context.parsed);
-                                    }
-                                    return label;
-                                }
-                            },
-                            backgroundColor: '#003366',
-                            titleFont: {
-                                size: 16,
-                                family: "'Inter', sans-serif"
-                            },
-                            bodyFont: {
-                                size: 14,
-                                family: "'Inter', sans-serif"
-                            },
-                            padding: 12,
-                            cornerRadius: 8,
-                            displayColors: false,
-                        }
-                    }
-                }
-            });
-            
             const sections = document.querySelectorAll('section');
             const headerNavLinks = document.querySelectorAll('header nav a.nav-link');
 
