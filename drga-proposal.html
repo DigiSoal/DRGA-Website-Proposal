@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Proposal for DRGA | by DigiSoal</title>
+    
+    <!-- Open Graph Tags for Social Media Previews (WhatsApp, Facebook, etc.) -->
+    <meta property="og:title" content="Web Design Proposal for DRGA | by DigiSoal">
+    <meta property="og:description" content="A comprehensive digital ecosystem proposal for DRGA and the Dr. Gwen Ramokgopa Foundation.">
+    <meta property="og:url" content="https://digisoal.github.io/DRGA-Website-Proposal/">
+    <meta property="og:type" content="website">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9F9F9;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 40vh;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 1.25rem;
+            left: -0.5rem;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 9999px;
+            background-color: #00C2B8;
+            border: 3px solid #003366;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #00C2B8;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        @media print {
+            section {
+                page-break-before: always;
+            }
+            #vision {
+                page-break-before: auto;
+            }
+        }
+        .tooltip-container {
+            position: relative;
+        }
+        .tooltip {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 10px;
+            background-color: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 50;
+        }
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent #333 transparent;
+        }
+        .tooltip-container:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-700">
+
+    <header class="bg-white/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-extrabold text-[#003366]">
+                    <span class="font-light">Proposal for</span> DRGA
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#vision" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">The Vision</a>
+                    <a href="#visuals" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Visuals</a>
+                    <a href="#features" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Features</a>
+                    <a href="#investment" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Investment</a>
+                    <a href="#process" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Process</a>
+                    <a href="#feedback-and-signoff" class="nav-link text-gray-700 hover:text-[#003366] font-semibold">Feedback & Signoff</a>
+                    <a href="https://wa.me/27661607344" target="_blank" rel="noopener noreferrer" class="bg-[#00C2B8] text-white py-2 px-4 rounded-full hover:bg-opacity-90 transition-colors font-bold flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2.87c-5.06 0-9.17 4.11-9.17 9.17s4.11 9.17 9.17 9.17c1.47 0 2.91-.35 4.17-1.02l3.75 1.02-1.04-3.64c.82-1.32 1.28-2.82 1.28-4.41.01-5.06-4.1-9.17-9.16-9.17zm.05 16.53c-4.04 0-7.31-3.27-7.31-7.31s3.27-7.31 7.31-7.31c4.04 0 7.31 3.27 7.31 7.31s-3.27 7.31-7.31 7.31zm3.22-4.94c-.18-.09-.94-.46-1.12-.55-.18-.09-.3-.14-.42.14-.12.28-.46.55-.57.67-.12.12-.25.14-.46.06-.21-.08-.89-.33-1.69-1.04-.63-.56-1.06-1.25-1.18-1.46-.12-.2-.01-.31.08-.41.08-.09.18-.21.28-.33.09-.12.12-.2.18-.33.06-.12.03-.23-.01-.3-.04-.08-.42-1.01-.57-1.38-.15-.36-.3-.31-.41-.31-.12 0-.25-.01-.38-.01s-.36.03-.55.22c-.18.18-.69.67-.69 1.63s.71 1.89.81 2.02c.1.12 1.39 2.12 3.38 2.93 1.99.81 2.37.7 2.81.67.43-.03.94-.38 1.07-.76.13-.38.13-.7.09-.76-.04-.06-.16-.1-.34-.19z"/></svg>
+                        <span>WhatsApp Us</span>
+                    </a>
+                    <button id="download-pdf-button" class="bg-[#003366] text-white py-2 px-4 rounded-full hover:bg-opacity-90 transition-colors font-bold">Download PDF</button>
+                </nav>
+                <div class="md:hidden flex items-center space-x-4">
+                    <a href="https://wa.me/27661607344" target="_blank" rel="noopener noreferrer" class="bg-[#00C2B8] text-white py-2 px-4 rounded-full hover:bg-opacity-90 transition-colors font-bold">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2.87c-5.06 0-9.17 4.11-9.17 9.17s4.11 9.17 9.17 9.17c1.47 0 2.91-.35 4.17-1.02l3.75 1.02-1.04-3.64c.82-1.32 1.28-2.82 1.28-4.41.01-5.06-4.1-9.17-9.16-9.17zm.05 16.53c-4.04 0-7.31-3.27-7.31-7.31s3.27-7.31 7.31-7.31c4.04 0 7.31 3.27 7.31 7.31s-3.27 7.31-7.31 7.31zm3.22-4.94c-.18-.09-.94-.46-1.12-.55-.18-.09-.3-.14-.42.14-.12.28-.46.55-.57.67-.12.12-.25.14-.46.06-.21-.08-.89-.33-1.69-1.04-.63-.56-1.06-1.25-1.18-1.46-.12-.2-.01-.31.08-.41.08-.09.18-.21.28-.33.09-.12.12-.2.18-.33.06-.12.03-.23-.01-.3-.04-.08-.42-1.01-.57-1.38-.15-.36-.3-.31-.41-.31-.12 0-.25-.01-.38-.01s-.36.03-.55.22c-.18.18-.69.67-.69 1.63s.71 1.89.81 2.02c.1.12 1.39 2.12 3.38 2.93 1.99.81 2.37.7 2.81.67.43-.03.94-.38 1.07-.76.13-.38.13-.7.09-.76-.04-.06-.16-.1-.34-.19z"/></svg>
+                    </a>
+                    <button id="download-pdf-button-mobile" class="bg-[#003366] text-white py-2 px-4 rounded-full hover:bg-opacity-90 transition-colors font-bold">PDF</button>
+                    <button id="mobile-menu-button" class="text-[#003366]">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <a href="#vision" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">The Vision</a>
+            <a href="#visuals" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Visuals</a>
+            <a href="#features" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Features</a>
+            <a href="#investment" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Investment</a>
+            <a href="#process" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Process</a>
+            <a href="#feedback-and-signoff" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Feedback & Signoff</a>
+            <a href="https://wa.me/27661607344" target="_blank" rel="noopener noreferrer" class="block py-4 px-6 text-sm text-white bg-[#00C2B8] text-center">WhatsApp Us</a>
+        </div>
+    </header>
+
+    <main class="pt-24" id="proposal-content">
+        <section id="vision" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-black text-[#003366] leading-tight mb-4">A Modern Digital Ecosystem with a Purpose.</h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                    DigiSoal proposes to create a complete digital ecosystem for DRGA (Dr Gwen & Associates). This includes a primary website for DRGA and a distinct, purpose-built website for the Dr. Gwen Ramokgopa Foundation. Our approach focuses on delivering a seamless and professional digital presence tailored to the needs of the organization.
+                </p>
+            </div>
+        </section>
+
+        <section id="visuals" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">A Professional & Dynamic Visual Identity</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">Our design philosophy combines a clean, corporate aesthetic with a dynamic, vibrant palette to instill confidence and convey forward-thinking leadership across all digital platforms.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#003366] mb-6">Proposed Colour Palette</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-lg bg-[#003366] mr-4 shadow-md"></div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Deep Navy Blue</h4>
+                                    <p class="text-gray-600">A foundational color conveying professionalism, stability, and trust.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-lg bg-[#00C2B8] mr-4 shadow-md"></div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Vibrant Teal</h4>
+                                    <p class="text-gray-600">A dynamic accent color symbolizing innovation and growth.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-lg bg-[#E6EBF0] mr-4 shadow-md border"></div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Soft Grey</h4>
+                                    <p class="text-gray-600">Used for supportive backgrounds and clean, spacious layouts.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-lg bg-[#333333] mr-4 shadow-md"></div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Charcoal Black</h4>
+                                    <p class="text-gray-600">Ensures high contrast and readability for all text.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#003366] mb-6">Proposed Typography</h3>
+                        <div class="p-8 bg-gray-100 rounded-lg">
+                            <h1 class="text-4xl font-bold" style="font-family: 'Inter', sans-serif;">Heading: Inter Bold</h1>
+                            <p class="mt-4 text-lg" style="font-family: 'Inter', sans-serif;">Body Text: Inter Regular. The modern, clean lines of Inter provide professional readability on all devices, making it a perfect choice for a corporate presence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="features" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">Essential Features & Brand Consistency</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">We will build two distinct digital platforms and cohesive marketing materials, all designed for maximum impact and a unified brand message.</p>
+                </div>
+                
+                <!-- DRGA Website Features -->
+                <h3 class="text-2xl font-bold text-[#003366] mt-8 mb-6">1. DRGA Website Features</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-12">
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#00C2B8] mb-3">📱</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Mobile-First Design</h4>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#00C2B8] mb-3">🔍</div>
+                        <h4 class="font-bold text-lg text-[#003366]">SEO Ready</h4>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#00C2B8] mb-3">💌</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Secure Contact Form</h4>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#00C2B8] mb-3">📝</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Integrated Blog</h4>
+                    </div>
+                </div>
+
+                <!-- Foundation Website Features -->
+                <h3 class="text-2xl font-bold text-[#003366] mt-16 mb-6">2. Foundation Website Features</h3>
+                 <p class="mt-4 text-gray-600 max-w-2xl mx-auto">A separate website will be designed for the Dr. Gwen Ramokgopa Foundation with its own unique colour palette and features to reflect its distinct mission and purpose.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mt-8 mb-12">
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#00C2B8] mb-3">💖</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Dedicated Mission Pages</h4>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#00C2B8] mb-3">🤝</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Volunteer Sign-up</h4>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#00C2B8] mb-3">💸</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Secure Donation Portal</h4>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#00C2B8] mb-3">📸</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Foundation Portfolio</h4>
+                    </div>
+                </div>
+
+                <!-- Page Breakdown -->
+                <h3 class="text-2xl font-bold text-[#003366] mt-16 mb-6">3. Proposed Page Structure</h3>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto mb-8">Each website will be built with a thoughtful page structure to ensure easy navigation and a clear user journey.</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-xl">
+                        <h4 class="text-xl font-bold text-[#003366] mb-4">DRGA Website Pages</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Home</li>
+                            <li>About Us</li>
+                            <li>Services</li>
+                            <li>Team</li>
+                            <li>Blog / Insights</li>
+                            <li>Contact</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-xl">
+                        <h4 class="text-xl font-bold text-[#003366] mb-4">Foundation Website Pages</h4>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li>Home</li>
+                            <li>About the Foundation</li>
+                            <li>Our Projects</li>
+                            <li>Get Involved (Volunteer)</li>
+                            <li>Donate</li>
+                            <li>Contact</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Marketing Materials -->
+                <h3 class="text-2xl font-bold text-[#003366] mt-16 mb-6">4. DRGA Marketing Materials</h3>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">We will design a suite of marketing materials that are visually consistent with the new DRGA website to ensure a unified and professional brand image across all platforms.</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mt-8">
+                     <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#003366] mb-3">📄</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Letterheads</h4>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#003366] mb-3">💼</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Business Cards</h4>
+                    </div>
+                     <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#003366] mb-3">🖼️</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Social Media Templates</h4>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <div class="text-4xl text-[#003366] mb-3">🎁</div>
+                        <h4 class="font-bold text-lg text-[#003366]">Presentation Templates</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="investment" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">A Transparent Financial Investment</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">This investment covers the complete design, development, and launch of both the DRGA and Foundation websites, as well as the creation of marketing materials.</p>
+                </div>
+                <div class="grid md:grid-cols-5 gap-8 items-center">
+                    <div class="md:col-span-2">
+                        <h3 class="text-2xl font-bold text-center text-[#003366] mb-4">Total Project Cost</h3>
+                        <div class="chart-container">
+                            <canvas id="costChart"></canvas>
+                        </div>
+                         <p class="text-center text-5xl font-black text-[#003366] mt-4">ZAR 65,000</p>
+                         <p class="text-center text-gray-500">Total One-Time Investment</p>
+                    </div>
+                    <div class="md:col-span-3">
+                        <h3 class="text-2xl font-bold text-[#003366] mb-6">Cost Breakdown (One-Time)</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-lg text-[#003366]">DRGA Website (drga.co.za)</h4>
+                                    <p class="text-sm text-gray-600">Full design, development, and launch.</p>
+                                </div>
+                                <div class="font-bold text-lg text-[#003366]">R 35,000</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-lg text-[#003366]">Foundation Website (drgwenramokgopafoundation.org.za)</h4>
+                                    <p class="text-sm text-gray-600">Full design, development, and launch.</p>
+                                </div>
+                                <div class="font-bold text-lg text-[#003366]">R 25,000</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-lg text-[#003366]">Marketing Materials</h4>
+                                    <p class="text-sm text-gray-600">Design for letterheads, cards, etc.</p>
+                                </div>
+                                <div class="font-bold text-lg text-[#003366]">R 5,000</div>
+                            </div>
+                        </div>
+                         <h3 class="text-2xl font-bold text-[#003366] mb-6 mt-12">Recurring Operational Costs</h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-lg text-[#003366]">Domain & Hosting</h4>
+                                    <p class="text-sm text-gray-600">Annual fees for both sites.</p>
+                                </div>
+                                <div class="font-bold text-lg text-[#003366]">~R 3,000 / year</div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+                                <div>
+                                    <h4 class="font-bold text-lg text-[#003366]">Maintenance & Support</h4>
+                                    <p class="text-sm text-gray-600">Security and updates for both sites.</p>
+                                </div>
+                                <div class="font-bold text-lg text-[#003366]">R 900 / month</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">Our Collaborative Project Timeline</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">We follow a clear, structured timeline to bring your vision to life efficiently and effectively.</p>
+                </div>
+                <div class="relative">
+                    <div class="border-l-2 border-dashed border-gray-300 absolute h-full top-0 left-4 md:left-1/2 md:-translate-x-1/2"></div>
+                    <div class="space-y-12">
+                        <div class="relative pl-10 md:pl-0 md:flex md:justify-between md:items-center w-full">
+                            <div class="md:w-5/12"></div>
+                            <div class="md:w-2/12 flex justify-center">
+                                <div class="bg-[#003366] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg z-10">1</div>
+                            </div>
+                            <div class="md:w-5/12">
+                                <div class="bg-white p-6 rounded-lg shadow-md timeline-item">
+                                    <h4 class="font-bold text-lg text-[#003366]">Week 1: Discovery & Planning</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Creative brief, wireframes, and content collection for both websites and marketing materials.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative pl-10 md:pl-0 md:flex md:flex-row-reverse md:justify-between md:items-center w-full">
+                            <div class="md:w-5/12"></div>
+                            <div class="md:w-2/12 flex justify-center">
+                                <div class="bg-[#003366] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg z-10">2</div>
+                            </div>
+                            <div class="md:w-5/12">
+                                <div class="bg-white p-6 rounded-lg shadow-md timeline-item">
+                                    <h4 class="font-bold text-lg text-[#003366]">Week 2: Design & Approval</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Visual mockups, colour palettes, and layout approval for all deliverables.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative pl-10 md:pl-0 md:flex md:justify-between md:items-center w-full">
+                            <div class="md:w-5/12"></div>
+                            <div class="md:w-2/12 flex justify-center">
+                                <div class="bg-[#003366] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg z-10">3</div>
+                            </div>
+                            <div class="md:w-5/12">
+                                <div class="bg-white p-6 rounded-lg shadow-md timeline-item">
+                                    <h4 class="font-bold text-lg text-[#003366]">Week 3-4: Development</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Coding and building both websites and preparing marketing material files.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative pl-10 md:pl-0 md:flex md:flex-row-reverse md:justify-between md:items-center w-full">
+                            <div class="md:w-5/12"></div>
+                            <div class="md:w-2/12 flex justify-center">
+                                <div class="bg-[#003366] text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg z-10">4</div>
+                            </div>
+                            <div class="md:w-5/12">
+                                <div class="bg-white p-6 rounded-lg shadow-md timeline-item">
+                                    <h4 class="font-bold text-lg text-[#003366]">Week 5: Content, QA, & Launch</h4>
+                                    <p class="text-sm text-gray-600 mt-1">Final testing, content population, and deployment of both websites.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="feedback-and-signoff" class="py-20 bg-[#E6EBF0]">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#003366]">Your Feedback and Approval</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">This interactive form allows you to provide feedback, request customizations, or sign off on the proposal with ease. Your input is vital to moving forward efficiently.</p>
+                </div>
+                <div class="max-w-2xl mx-auto p-8 bg-white rounded-lg shadow-xl">
+                    <form id="feedback-form" class="space-y-6">
+                        <div>
+                            <label for="clientName" class="block text-sm font-semibold text-[#003366]">Your Name</label>
+                            <input type="text" id="clientName" name="clientName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#00C2B8] focus:ring focus:ring-[#00C2B8]/50 p-2">
+                        </div>
+                        <div>
+                            <label for="clientEmail" class="block text-sm font-semibold text-[#003366]">Your Email</label>
+                            <input type="email" id="clientEmail" name="clientEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#00C2B8] focus:ring focus:ring-[#00C2B8]/50 p-2">
+                        </div>
+                        <div>
+                            <label for="clientFeedback" class="block text-sm font-semibold text-[#003366]">Feedback & Comments</label>
+                            <textarea id="clientFeedback" name="clientFeedback" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#00C2B8] focus:ring focus:ring-[#00C2B8]/50 p-2"></textarea>
+                        </div>
+                        
+                        <div class="border-t pt-6 border-gray-200">
+                            <h3 class="text-xl font-bold text-[#003366] mb-4">Project Terms & Agreement</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="projectStartDate" class="block text-sm font-semibold text-[#003366]">Desired Project Start Date</label>
+                                    <input type="date" id="projectStartDate" name="projectStartDate" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#00C2B8] focus:ring focus:ring-[#00C2B8]/50 p-2">
+                                </div>
+                                <div>
+                                    <h4 class="text-sm font-semibold text-[#003366] mb-2">Payment Terms</h4>
+                                    <p class="text-sm text-gray-600 mb-2">A **50% deposit** is required to commence work, covering initial design and development costs. The remaining **50% balance** is due upon final sign-off and before website deployment.</p>
+                                    <p class="text-sm text-gray-600 mb-4">A comprehensive **Service Level Agreement (SLA)** will be provided and signed by both parties after this proposal is approved, ensuring a legally sound and protected partnership for all involved.</p>
+                                </div>
+                                <div class="flex items-center">
+                                    <input id="paymentTermsAgree" name="paymentTermsAgree" type="checkbox" required class="h-4 w-4 rounded border-gray-300 text-[#003366] focus:ring-[#00C2B8]">
+                                    <label for="paymentTermsAgree" class="ml-2 block text-sm font-semibold text-gray-700">I have read, understood, and agree to the payment terms.</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center">
+                            <input id="proposalApproval" name="proposalApproval" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-[#003366] focus:ring-[#00C2B8]">
+                            <label for="proposalApproval" class="ml-2 block text-sm font-semibold text-gray-700">I approve the proposal as-is and wish to proceed.</label>
+                        </div>
+                        <button type="submit" id="submit-feedback-btn" class="w-full bg-[#003366] text-white py-3 px-8 rounded-full hover:bg-opacity-90 transition-colors font-bold text-lg">Submit Feedback</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer id="contact" class="bg-[#003366] text-white">
+            <div class="container mx-auto px-6 py-20 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold">Let's Build DRGA's Digital Future.</h2>
+                <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">We are confident that this proposed digital ecosystem will provide DRGA and the Foundation with a modern, professional, and trustworthy presence. We look forward to our partnership.</p>
+                <div class="mt-8">
+                    <a href="https://wa.me/27661607344" target="_blank" rel="noopener noreferrer" class="bg-[#00C2B8] text-[#003366] py-3 px-8 rounded-full hover:bg-opacity-90 transition-colors font-bold text-lg inline-flex items-center space-x-2">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2.87c-5.06 0-9.17 4.11-9.17 9.17s4.11 9.17 9.17 9.17c1.47 0 2.91-.35 4.17-1.02l3.75 1.02-1.04-3.64c.82-1.32 1.28-2.82 1.28-4.41.01-5.06-4.1-9.17-9.16-9.17zm.05 16.53c-4.04 0-7.31-3.27-7.31-7.31s3.27-7.31 7.31-7.31c4.04 0 7.31 3.27 7.31 7.31s-3.27 7.31-7.31 7.31zm3.22-4.94c-.18-.09-.94-.46-1.12-.55-.18-.09-.3-.14-.42.14-.12.28-.46.55-.57.67-.12.12-.25.14-.46.06-.21-.08-.89-.33-1.69-1.04-.63-.56-1.06-1.25-1.18-1.46-.12-.2-.01-.31.08-.41.08-.09.18-.21.28-.33.09-.12.12-.2.18-.33.06-.12.03-.23-.01-.3-.04-.08-.42-1.01-.57-1.38-.15-.36-.3-.31-.41-.31-.12 0-.25-.01-.38-.01s-.36.03-.55.22c-.18.18-.69.67-.69 1.63s.71 1.89.81 2.02c.1.12 1.39 2.12 3.38 2.93 1.99.81 2.37.7 2.81.67.43-.03.94-.38 1.07-.76.13-.38.13-.7.09-.76-.04-.06-.16-.1-.34-.19z"/></svg>
+                        <span>WhatsApp Us</span>
+                    </a>
+                </div>
+                <div class="mt-12 text-gray-400">
+                    <p>Proposal by <span class="font-bold text-white">DigiSoal</span></p>
+                    <p class="text-sm">Email: <a href="mailto:mkhulosoal@gmail.com" class="hover:underline">mkhulosoal@gmail.com</a></p>
+                    <p class="text-sm">WhatsApp: <a href="https://wa.me/27661607344" class="hover:underline" target="_blank" rel="noopener noreferrer">+27 66 160 7344</a></p>
+                </div>
+            </div>
+        </footer>
+    </main>
+    
+    <div id="modal" class="modal">
+        <div class="bg-white p-8 rounded-lg shadow-2xl max-w-sm w-full mx-4 text-center">
+            <h3 class="text-2xl font-bold text-[#003366] mb-4" id="modal-title"></h3>
+            <p class="text-gray-600 mb-6" id="modal-message"></p>
+            <div id="modal-actions" class="flex flex-col space-y-4">
+                <!-- Action buttons will be inserted here -->
+            </div>
+            <button id="close-modal" class="mt-6 w-full bg-[#E6EBF0] text-[#003366] py-3 px-6 rounded-full hover:bg-gray-200 transition-colors font-bold">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async function () {
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const proposalContent = document.getElementById('proposal-content');
+            const downloadPdfButton = document.getElementById('download-pdf-button');
+            const downloadPdfButtonMobile = document.getElementById('download-pdf-button-mobile');
+            const feedbackForm = document.getElementById('feedback-form');
+            const modal = document.getElementById('modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalMessage = document.getElementById('modal-message');
+            const modalActions = document.getElementById('modal-actions');
+            const closeModalBtn = document.getElementById('close-modal');
+
+            mobileMenuButton.addEventListener('click', function () {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const navLinks = document.querySelectorAll('#mobile-menu a, header nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            downloadPdfButton.addEventListener('click', () => generatePdf());
+            downloadPdfButtonMobile.addEventListener('click', () => generatePdf());
+            
+            closeModalBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            feedbackForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const clientName = document.getElementById('clientName').value;
+                const clientEmail = document.getElementById('clientEmail').value;
+                const clientFeedback = document.getElementById('clientFeedback').value;
+                const proposalApproval = document.getElementById('proposalApproval').checked ? 'Approved' : 'Not Approved';
+                const projectStartDate = document.getElementById('projectStartDate').value;
+                const paymentTermsAgree = document.getElementById('paymentTermsAgree').checked ? 'Agreed' : 'Not Agreed';
+
+                const subject = encodeURIComponent('Proposal Feedback & Sign-off');
+                const emailBody = `Proposal Feedback from DRGA\n\n` +
+                                  `Name: ${clientName}\n` +
+                                  `Email: ${clientEmail}\n` +
+                                  `Project Start Date: ${projectStartDate}\n` +
+                                  `Feedback & Comments: ${clientFeedback}\n` +
+                                  `\n---\n` +
+                                  `Proposal Approval: ${proposalApproval}\n` +
+                                  `Payment Terms Agreement: ${paymentTermsAgree}`;
+                const encodedEmailBody = encodeURIComponent(emailBody);
+                const mailtoLink = `mailto:mkhulosoal@gmail.com?subject=${subject}&body=${encodedEmailBody}`;
+
+                const whatsappMessage = `Hello, I am providing feedback on the DRGA Web Design Proposal.\n\n` +
+                                        `Name: ${clientName}\n` +
+                                        `Project Start Date: ${projectStartDate}\n` +
+                                        `Feedback: ${clientFeedback}\n` +
+                                        `Approval: ${proposalApproval}\n` +
+                                        `Payment Terms: ${paymentTermsAgree}`;
+                const encodedWhatsappMessage = encodeURIComponent(whatsappMessage);
+                const whatsappLink = `https://wa.me/27661607344?text=${encodedWhatsappMessage}`;
+
+                showActionModal(mailtoLink, whatsappLink);
+            });
+
+            function showActionModal(mailtoLink, whatsappLink) {
+                modalTitle.textContent = "Send Your Feedback";
+                modalMessage.textContent = "Choose your preferred method to send your feedback to us.";
+                modalActions.innerHTML = `
+                    <a href="${mailtoLink}" target="_blank" rel="noopener noreferrer" class="bg-[#003366] text-white py-3 px-8 rounded-full hover:bg-opacity-90 transition-colors font-bold text-lg flex items-center justify-center space-x-2">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
+                        <span>Send via Email</span>
+                    </a>
+                    <a href="${whatsappLink}" target="_blank" rel="noopener noreferrer" class="bg-[#00C2B8] text-white py-3 px-8 rounded-full hover:bg-opacity-90 transition-colors font-bold text-lg flex items-center justify-center space-x-2">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2.87c-5.06 0-9.17 4.11-9.17 9.17s4.11 9.17 9.17 9.17c1.47 0 2.91-.35 4.17-1.02l3.75 1.02-1.04-3.64c.82-1.32 1.28-2.82 1.28-4.41.01-5.06-4.1-9.17-9.16-9.17zm.05 16.53c-4.04 0-7.31-3.27-7.31-7.31s3.27-7.31 7.31-7.31c4.04 0 7.31 3.27 7.31 7.31s-3.27 7.31-7.31 7.31zm3.22-4.94c-.18-.09-.94-.46-1.12-.55-.18-.09-.3-.14-.42.14-.12.28-.46.55-.57.67-.12.12-.25.14-.46.06-.21-.08-.89-.33-1.69-1.04-.63-.56-1.06-1.25-1.18-1.46-.12-.2-.01-.31.08-.41.08-.09.18-.21.28-.33.09-.12.12-.2.18-.33.06-.12.03-.23-.01-.3-.04-.08-.42-1.01-.57-1.38-.15-.36-.3-.31-.41-.31-.12 0-.25-.01-.38-.01s-.36.03-.55.22c-.18.18-.69.67-.69 1.63s.71 1.89.81 2.02c.1.12 1.39 2.12 3.38 2.93 1.99.81 2.37.7 2.81.67.43-.03.94-.38 1.07-.76.13-.38.13-.7.09-.76-.04-.06-.16-.1-.34-.19z"/></svg>
+                        <span>Send via WhatsApp</span>
+                    </a>
+                `;
+                modal.style.display = 'flex';
+            }
+
+            function generatePdf() {
+                const element = proposalContent;
+                const options = {
+                    margin: 10,
+                    filename: 'DRGA_DigiSoal_Proposal.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2, logging: false, useCORS: true },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+                html2pdf().set(options).from(element).save();
+            }
+
+            const ctx = document.getElementById('costChart').getContext('2d');
+            const costChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['DRGA Website', 'Foundation Website', 'Marketing Materials'],
+                    datasets: [{
+                        label: 'Cost Breakdown',
+                        data: [35000, 25000, 5000],
+                        backgroundColor: [
+                            '#003366',
+                            '#336699',
+                            '#99BADD',
+                        ],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 4,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#4A5568',
+                                font: {
+                                    family: "'Inter', sans-serif",
+                                    size: 12
+                                },
+                                padding: 15,
+                                boxWidth: 12,
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('en-ZA', { style: 'currency', currency: 'ZAR' }).format(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            },
+                            backgroundColor: '#003366',
+                            titleFont: {
+                                size: 16,
+                                family: "'Inter', sans-serif"
+                            },
+                            bodyFont: {
+                                size: 14,
+                                family: "'Inter', sans-serif"
+                            },
+                            padding: 12,
+                            cornerRadius: 8,
+                            displayColors: false,
+                        }
+                    }
+                }
+            });
+            
+            const sections = document.querySelectorAll('section');
+            const headerNavLinks = document.querySelectorAll('header nav a.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        headerNavLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
